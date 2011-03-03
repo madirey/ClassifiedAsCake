@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html> 
+	<head> 
+		<title><?php echo $title_for_layout; ?></title> 
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+		<?php echo $scripts_for_layout; ?>
+		<?php echo $javascript->link(array('prototype')); ?>
+		<link rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css"> 
+		<?php echo $html->css('default'); ?>
+	</head> 
+
+	<body> 
+		<div id="doc2" class="yui-t4"> 
+			<div id="hd">
+				<h1><?php echo $html->link('', array('controller' => $configArray['homeController'], 'action' => $configArray['homeAction'])); ?></h1>
+				<!--
+				<h1><?php echo $html->link($configArray['siteTitle'], array('controller' => $configArray['homeController'], 'action' => $configArray['homeAction'])); ?></h1>
+				-->
+				<div id="navlist">
+					<ul>
+						<li id="active"><?php echo $html->link('Home', array('controller' => 'items', 'action' => 'index')); ?></li>
+						<li><?php echo $html->link('Register', array('controller' => 'users', 'action' => 'register')); ?></li>
+						<li><?php echo $admin->showLoginLogout(); ?></li>
+						<li><?php echo $html->link('Post', array('controller' => 'items', 'action' => 'add')); ?></li>
+						<li><?php echo $html->link('Search', array('controller' => 'items', 'action' => 'search')); ?></li>
+					</ul>
+				</div>
+			</div> 
+			<div id="bd"> 
+				<div id="yui-main"> 
+					<div class="yui-b">
+						<div id="content" class="yui-g"> 
+							<?php $session->flash(); ?>
+							<?php echo $content_for_layout; ?> 
+						</div> 
+					</div> 
+				</div> 
+				<div id="nv" class="yui-b">
+					<ul>
+						<li><h2>Categories</h2>
+							<?php echo $categoryMenu->display($categoryList); ?>
+						</li>
+						<li><h2>Meta</h2>
+							<?php echo $admin->showAdminLink($showAdminLink); ?>
+						</li>
+					</ul>
+				</div> 
+			</div> 
+			<div id="ft">This site powered by <a href="">Classifieds For Everyone</a> </div> 
+		</div> 
+	</body> 
+</html> 
